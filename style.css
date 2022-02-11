@@ -1,0 +1,103 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Exo 2", sans-serif;
+  font-size: xx-large;
+  background-color: beige;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.icon {
+  margin: 5px;
+  transform: scale(1.5);
+}
+
+.interact {
+  padding: 10px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  color: rgba(70, 130, 236, 1);
+}
+
+.inputText {
+  padding: 10px 7px;
+  border-radius: 5px;
+  margin-top: 2rem;
+  font-size: large;
+  font-family: "Exo 2", sans-serif;
+}
+
+.inputText:hover {
+  box-shadow: 1px 1px;
+}
+
+button {
+  padding: 10px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: large;
+  font-family: "Exo 2", sans-serif;
+  background-color: #888c91;
+}
+
+button:hover {
+  background-color: #5e5e5e;
+  border-style: solid;
+  box-shadow: 1px 1px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.movieCard {
+  border-style: solid;
+  border-color: #1c2c34;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2rem;
+  text-align: left;
+  color: #f9f6f0;
+  background-color: #1c2c34;
+}
+
+.movieCard:hover {
+  box-shadow: 5px 5px #5e5e5e;
+}
+
+.movieDetailItem {
+  display: flex;
+  font-size: x-large;
+  font-weight: 100;
+  max-width: fit-content;
+}
+
+footer {
+  position: fixed;
+  height: 32px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}

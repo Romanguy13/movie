@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Search App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+  </head>
+
+  <body>
+    <div class="interact" x-data="init()">
+      <h4 class="font-xxlarge">Movie Search</h4>
+      <div class="icon">
+        <svg
+          stroke="currentColor"
+          fill="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          height="1em"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18,11c0-0.959-0.68-1.761-1.581-1.954C16.779,8.445,17,7.75,17,7c0-2.206-1.794-4-4-4c-1.517,0-2.821,0.857-3.5,2.104 C8.821,3.857,7.517,3,6,3C3.794,3,2,4.794,2,7c0,0.902,0.312,1.727,0.817,2.396C2.324,9.761,2,10.342,2,11v8c0,1.103,0.897,2,2,2 h12c1.103,0,2-0.897,2-2v-2.638l4,2v-7l-4,2V11z M13,5c1.103,0,2,0.897,2,2s-0.897,2-2,2s-2-0.897-2-2S11.897,5,13,5z M6,5 c1.103,0,2,0.897,2,2S7.103,9,6,9S4,8.103,4,7S4.897,5,6,5z M4,19v-8h12l0.002,8H4z"
+          ></path>
+        </svg>
+      </div>
+      <div class="searchArea">
+        <input
+          class="inputText"
+          type="text"
+          placeholder="Type to search for movies"
+          x-model="q"
+          @keyup.enter="search"
+        />
+        <button @Click="search">Search</button>
+      </div>
+      <div class="content">
+        <template x-for="result in results">
+          <div class="movieCard">
+            <div>
+              <img x-bind:src="result.Poster" />
+            </div>
+            <div>
+              <div class="movieDetailItem">
+                <span>Title: </span>
+                <div x-text="result.Title">Man of Steel</div>
+              </div>
+              <div class="movieDetailItem">
+                <span>Year: </span>
+                <span x-text="result.Year">2008</span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+    <script>
+      function init() {
+        return {
+          results: [],
+          q: "",
+          search: function () {
+            fetch(
+              "https://www.omdbapi.com/?&apikey=2943973c&s=" +
+                this.q +
+                "&type=movie"
+            )
+              .then((response) => response.json())
+              .then((response) => (this.results = response.Search))
+              .catch((err) => console.log(err));
+            console.log();
+            this.q = "";
+          },
+        };
+      }
+    </script>
+  </body>
+
+  <footer>
+    <a href="https://github.com/codylambertdev">
+      <svg
+        stroke="currentColor"
+        fill="currentColor"
+        stroke-width="0"
+        viewBox="0 0 1024 1024"
+        height="1em"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0 1 38.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"
+        ></path>
+      </svg>
+    </a>
+  </footer>
+</html>
